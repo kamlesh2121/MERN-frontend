@@ -15,7 +15,7 @@ const Search = () => {
             {values?.results.map((p, index) => (
               <div className="card m-2 d" key={index} style={{ width: "18rem" }}>
                 <img
-                  src={`http://localhost:5000/api/v1/product/product-photo/${p._id}`}
+                  src={`/api/v1/product/product-photo/${p._id}`}
                   className="card-img-top"
                   alt={p.name}
                 />

@@ -10,9 +10,7 @@ const Orders = () => {
 
   const getOrders = async () => {
     try {
-      const { data } = await axios.get(
-        "http://localhost:5000/api/v1/auth/orders"
-      );
+      const { data } = await axios.get("/api/v1/auth/orders");
       setOrders(data);
     } catch (error) {
       console.log(error);
@@ -32,7 +30,7 @@ const Orders = () => {
           </div>
 
           <div className="col-md-9">
-            <h1 className="text-center">Your Orders</h1> 
+            <h1 className="text-center">Your Orders</h1>
             {orders.map((o, i) => {
               return (
                 <div className="border shadow">
@@ -60,10 +58,10 @@ const Orders = () => {
                   </table>
                   <div className="container ">
                     {o?.products?.map((p, i) => (
-                      <div className="row mb-3 p-3 card flex-row" key={i} >
+                      <div className="row mb-3 p-3 card flex-row" key={i}>
                         <div className="col-md-4">
                           <img
-                            src={`http://localhost:5000/api/v1/product/product-photo/${p._id}`}
+                            src={`/api/v1/product/product-photo/${p._id}`}
                             className="card-img-top"
                             height="160px"
                             width="100px"
