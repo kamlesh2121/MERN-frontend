@@ -1,6 +1,7 @@
 import React from 'react'
 import Layout from '../components/Layout/Layout'
 import { useSearch } from '../Contex/Search'
+const baseUrl = 'https://mern-backend-bvwk.onrender.com'
 
 const Search = () => {
     const [values, setValues] = useSearch();
@@ -15,7 +16,7 @@ const Search = () => {
             {values?.results.map((p, index) => (
               <div className="card m-2 d" key={index} style={{ width: "18rem" }}>
                 <img
-                  src={`/api/v1/product/product-photo/${p._id}`}
+                  src={`${baseUrl}/api/v1/product/product-photo/${p._id}`}
                   className="card-img-top"
                   alt={p.name}
                 />

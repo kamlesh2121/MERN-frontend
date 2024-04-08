@@ -3,6 +3,7 @@ import Layout from "../../components/Layout/Layout.js";
 import AdminMenu from "../../components/Layout/AdminMenu.js";
 import axios from "axios";
 import { toast } from "react-toastify";
+const baseUrl = 'https://mern-backend-bvwk.onrender.com'
 
 
 const Users = () => {
@@ -12,7 +13,7 @@ const Users = () => {
   //Remove User
   const removehandle = async (userId) => {
     try {
-      const { data } = await axios.delete(`/api/v1/auth/remove-user/${userId}`);
+      const { data } = await axios.delete(`${baseUrl}/api/v1/auth/remove-user/${userId}`);
       toast.success(data?.message);
       getAllUsers();
     } catch (error) {
@@ -24,7 +25,7 @@ const Users = () => {
   //get all Users
   const getAllUsers = async () => {
     try {
-      const { data } = await axios.get("/api/v1/auth/all-users");
+      const { data } = await axios.get(`${baseUrl}/api/v1/auth/all-users`);
       setUsers(data?.users);
     } catch (error) {
       console.log(error);

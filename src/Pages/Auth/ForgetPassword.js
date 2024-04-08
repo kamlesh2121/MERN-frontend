@@ -4,6 +4,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import "../../styles/AuthStyles.css";
 import { useNavigate } from "react-router-dom";
+const baseUrl = 'https://mern-backend-bvwk.onrender.com'
 
 const ForgetPassword = () => {
   const [email, setEmail] = useState("");
@@ -14,7 +15,7 @@ const ForgetPassword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("/api/v1/auth/forgot-password", {
+      const res = await axios.post(`${baseUrl}/api/v1/auth/forgot-password`, {
         email,
         answer,
         newPassword,

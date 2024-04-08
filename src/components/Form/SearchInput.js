@@ -2,6 +2,7 @@ import React from 'react'
 import { useSearch } from '../../Contex/Search'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+const baseUrl = 'https://mern-backend-bvwk.onrender.com'
 
 const SearchInput = () => {
   const [values, setValues] = useSearch();
@@ -11,7 +12,7 @@ const SearchInput = () => {
     e.preventDefault();
     try {
       const { data } = await axios.get(
-        `/api/v1/product/search/${values.keyword}`
+        `${baseUrl}/api/v1/product/search/${values.keyword}`
       );
       setValues({ ...values, results: data });
       navigate("/search");

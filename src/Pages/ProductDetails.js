@@ -3,6 +3,7 @@ import Layout from '../components/Layout/Layout'
 import axios from 'axios'
 import {useParams} from 'react-router-dom'
 import '../styles/ProductDetailsStyles.css'
+const baseUrl = 'https://mern-backend-bvwk.onrender.com'
 
 const ProductDetails = () => {
     const params = useParams();
@@ -18,7 +19,7 @@ const ProductDetails = () => {
     //get product
     const getProduct = async() =>{
         try {
-            const {data} = await axios.get(`/api/v1/product/get-product/${params.slug}`);
+            const {data} = await axios.get(`${baseUrl}/api/v1/product/get-product/${params.slug}`);
             setProduct(data?.product);
             getSimilarProduct(data?.product?._id , data?.product?.category?._id);
                
@@ -30,7 +31,7 @@ const ProductDetails = () => {
     // get Similar Product
     const getSimilarProduct = async (pid,cid)=>{
         try {
-            const {data} = await axios.get(`/api/v1/product/related-product/${pid}/${cid}`);
+            const {data} = await axios.get(`${baseUrl}/api/v1/product/related-product/${pid}/${cid}`);
             setRelatedProduct(data?.product);
             
         } catch (error) {
@@ -45,7 +46,7 @@ const ProductDetails = () => {
         <h1 >Product Details</h1>
         <div className="row container product-details">
             <div className="col-md-6">
-            <img src={`/api/v1/product/product-photo/${product._id}`} className="card-img-top" alt={product.name}
+            <img src={`${baseUrl}/api/v1/product/product-photo/${product._id}`} className="card-img-top" alt={product.name}
             height='300px'
             width='300px' />
             </div>
@@ -70,7 +71,7 @@ const ProductDetails = () => {
             {relatedProduct?.map((p, index) => (
               <div className="card m-2 d" key={index} style={{ width: "18rem" }}>
                 <img
-                  src={`/api/v1/product/product-photo/${p._id}`}
+                  src={`${baseUrl}/api/v1/product/product-photo/${p._id}`}
                   className="card-img-top"
                   alt={p.name}
                 />

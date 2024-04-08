@@ -6,6 +6,8 @@ import { useAuth } from '../../Contex/AuthContex';
 import moment from "moment";
 import { Select } from "antd";
 const { Option } = Select;
+const baseUrl = 'https://mern-backend-bvwk.onrender.com'
+
 
 const AdminOrders = () => {
   const [status, setStatus] = useState([
@@ -20,7 +22,7 @@ const AdminOrders = () => {
   const [auth, setAuth] = useAuth();
   const getOrders = async () => {
     try {
-      const { data } = await axios.get("/api/v1/auth/orders");
+      const { data } = await axios.get(`${baseUrl}/api/v1/auth/orders`);
       setOrders(data);
     } catch (error) {
       console.log(error);
@@ -33,7 +35,7 @@ const AdminOrders = () => {
 
   const handleChange = async (orderId, value) => {
     try {
-      const { data } = await axios.put(`/api/v1/auth/order-status/${orderId}`, {
+      const { data } = await axios.put(`${baseUrl}/api/v1/auth/order-status/${orderId}`, {
         status: value,
       });
       getOrders();

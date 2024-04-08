@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import CategoryForm from "../../components/Form/CategoryForm.js";
 import {Modal} from 'antd';
+const baseUrl = 'https://mern-backend-bvwk.onrender.com'
 
 const CreateCategory = () => {
   const [categories, setCategories] = useState([]);
@@ -16,7 +17,7 @@ const CreateCategory = () => {
   const handleSubmit = async (e)=>{
     e.preventDefault();
     try {
-      const {data} = await axios.post('/api/v1/category/create-category',{name})
+      const {data} = await axios.post(`${baseUrl}/api/v1/category/create-category`,{name})
       if(data?.success){
         toast.success(`${name} is created`)
         getAllCategory();
@@ -31,7 +32,7 @@ const CreateCategory = () => {
   //get category
   const getAllCategory = async () => {
     try {
-      const { data } = await axios.get("/api/v1/category/get-category");
+      const { data } = await axios.get(`${baseUrl}/api/v1/category/get-category`);
 
       if (data?.success) {
         setCategories(data?.category);
@@ -51,7 +52,7 @@ const CreateCategory = () => {
   const handleUpdate = async(e) =>{
     e.preventDefault();
     try {
-      const {data} = await axios.put(`/api/v1/category/update-category/${selected._id}`,{name:updateName})
+      const {data} = await axios.put(`${baseUrl}/api/v1/category/update-category/${selected._id}`,{name:updateName})
       if(data.success){
         toast.success(`${updateName} is updated`)
         setSelected(null)
@@ -70,7 +71,7 @@ const CreateCategory = () => {
   //Delete category
   const handleDelete = async(pid) =>{
     try {
-      const {data} = await axios.delete(`/api/v1/category/delete-category/${pid}`);
+      const {data} = await axios.delete(`${baseUrl}/api/v1/category/delete-category/${pid}`);
       if(data.success){
         toast.success(`${name} is Deleted`)
         getAllCategory();

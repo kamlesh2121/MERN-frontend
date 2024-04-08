@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import "../../styles/AuthStyles.css";
 import { useNavigate ,useLocation} from "react-router-dom";
 import { useAuth } from "../../Contex/AuthContex"; // custom hook
+const baseUrl = 'https://mern-backend-bvwk.onrender.com'
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -16,7 +17,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("/api/v1/auth/login", {
+      const res = await axios.post(`${baseUrl}/api/v1/auth/login`, {
         email,
         password,
       });
